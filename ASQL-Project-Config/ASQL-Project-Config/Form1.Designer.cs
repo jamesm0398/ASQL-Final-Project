@@ -30,9 +30,7 @@
         {
             this.title = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.timescale = new System.Windows.Forms.TextBox();
-            this.assemblystations = new System.Windows.Forms.TextBox();
             this.Save = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,21 +53,15 @@
             this.station1Box = new System.Windows.Forms.ComboBox();
             this.station2Box = new System.Windows.Forms.ComboBox();
             this.station3Box = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.stn1Exp = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.stn3Exp = new System.Windows.Forms.Label();
-            this.stn2Exp = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // title
             // 
             this.title.AutoSize = true;
-            this.title.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title.Location = new System.Drawing.Point(232, 30);
+            this.title.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title.Location = new System.Drawing.Point(179, 30);
             this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(324, 25);
+            this.title.Size = new System.Drawing.Size(385, 35);
             this.title.TabIndex = 0;
             this.title.Text = "Kanban System Configuration";
             // 
@@ -83,16 +75,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Timescale:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(39, 146);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(222, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Number of Assembly Stations:";
-            // 
             // timescale
             // 
             this.timescale.Location = new System.Drawing.Point(142, 95);
@@ -100,16 +82,9 @@
             this.timescale.Size = new System.Drawing.Size(42, 20);
             this.timescale.TabIndex = 4;
             // 
-            // assemblystations
-            // 
-            this.assemblystations.Location = new System.Drawing.Point(287, 145);
-            this.assemblystations.Name = "assemblystations";
-            this.assemblystations.Size = new System.Drawing.Size(47, 20);
-            this.assemblystations.TabIndex = 5;
-            // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(634, 318);
+            this.Save.Location = new System.Drawing.Point(311, 337);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(132, 49);
             this.Save.TabIndex = 6;
@@ -302,71 +277,11 @@
             this.station3Box.Size = new System.Drawing.Size(69, 21);
             this.station3Box.TabIndex = 27;
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(277, 330);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(55, 13);
-            this.label15.TabIndex = 28;
-            this.label15.Text = "Station 1: ";
-            // 
-            // stn1Exp
-            // 
-            this.stn1Exp.AutoSize = true;
-            this.stn1Exp.Location = new System.Drawing.Point(338, 330);
-            this.stn1Exp.Name = "stn1Exp";
-            this.stn1Exp.Size = new System.Drawing.Size(41, 13);
-            this.stn1Exp.TabIndex = 29;
-            this.stn1Exp.Text = "label16";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(277, 385);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 13);
-            this.label16.TabIndex = 30;
-            this.label16.Text = "Station 3: ";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(276, 355);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(55, 13);
-            this.label17.TabIndex = 31;
-            this.label17.Text = "Station 2: ";
-            // 
-            // stn3Exp
-            // 
-            this.stn3Exp.AutoSize = true;
-            this.stn3Exp.Location = new System.Drawing.Point(337, 388);
-            this.stn3Exp.Name = "stn3Exp";
-            this.stn3Exp.Size = new System.Drawing.Size(41, 13);
-            this.stn3Exp.TabIndex = 32;
-            this.stn3Exp.Text = "label16";
-            // 
-            // stn2Exp
-            // 
-            this.stn2Exp.AutoSize = true;
-            this.stn2Exp.Location = new System.Drawing.Point(337, 359);
-            this.stn2Exp.Name = "stn2Exp";
-            this.stn2Exp.Size = new System.Drawing.Size(41, 13);
-            this.stn2Exp.TabIndex = 33;
-            this.stn2Exp.Text = "label16";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.stn2Exp);
-            this.Controls.Add(this.stn3Exp);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.stn1Exp);
-            this.Controls.Add(this.label15);
             this.Controls.Add(this.station3Box);
             this.Controls.Add(this.station2Box);
             this.Controls.Add(this.station1Box);
@@ -389,9 +304,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Save);
-            this.Controls.Add(this.assemblystations);
             this.Controls.Add(this.timescale);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.title);
             this.Name = "Form1";
@@ -406,9 +319,7 @@
 
         private System.Windows.Forms.Label title;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox timescale;
-        private System.Windows.Forms.TextBox assemblystations;
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -431,12 +342,6 @@
         private System.Windows.Forms.ComboBox station1Box;
         private System.Windows.Forms.ComboBox station2Box;
         private System.Windows.Forms.ComboBox station3Box;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label stn1Exp;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label stn3Exp;
-        private System.Windows.Forms.Label stn2Exp;
     }
 }
 
