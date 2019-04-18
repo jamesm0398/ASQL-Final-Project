@@ -23,3 +23,15 @@ C:\Users\jmilne8346\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-
 C:\Users\jmilne8346\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL-Project-Config.csproj.CopyComplete
 C:\Users\jmilne8346\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL-Project-Config.exe
 C:\Users\jmilne8346\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL-Project-Config.pdb
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\bin\Debug\ASQL-Project-Config.exe.config
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\bin\Debug\ASQL-Project-Config.exe
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\bin\Debug\ASQL-Project-Config.pdb
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\bin\Debug\MySql.Data.dll
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL-Project-Config.csprojAssemblyReference.cache
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL_Project_Config.Form1.resources
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL_Project_Config.Properties.Resources.resources
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL-Project-Config.csproj.GenerateResource.cache
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL-Project-Config.csproj.CoreCompileInputs.cache
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL-Project-Config.csproj.CopyComplete
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL-Project-Config.exe
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Config\ASQL-Project-Config\obj\Debug\ASQL-Project-Config.pdb

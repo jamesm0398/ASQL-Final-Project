@@ -1,0 +1,10 @@
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Visualiser\ASQL-Project-Visualiser\bin\Debug\ASQL-Project-Visualiser.exe.config
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Visualiser\ASQL-Project-Visualiser\bin\Debug\ASQL-Project-Visualiser.exe
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Visualiser\ASQL-Project-Visualiser\bin\Debug\ASQL-Project-Visualiser.pdb
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Visualiser\ASQL-Project-Visualiser\obj\Debug\ASQL-Project-Visualiser.csprojAssemblyReference.cache
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Visualiser\ASQL-Project-Visualiser\obj\Debug\ASQL_Project_Visualiser.Form1.resources
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Visualiser\ASQL-Project-Visualiser\obj\Debug\ASQL_Project_Visualiser.Properties.Resources.resources
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Visualiser\ASQL-Project-Visualiser\obj\Debug\ASQL-Project-Visualiser.csproj.GenerateResource.cache
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Visualiser\ASQL-Project-Visualiser\obj\Debug\ASQL-Project-Visualiser.csproj.CoreCompileInputs.cache
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Visualiser\ASQL-Project-Visualiser\obj\Debug\ASQL-Project-Visualiser.exe
+C:\Users\james\Desktop\ASQL-Final-Project\ASQL-Project-Visualiser\ASQL-Project-Visualiser\obj\Debug\ASQL-Project-Visualiser.pdb

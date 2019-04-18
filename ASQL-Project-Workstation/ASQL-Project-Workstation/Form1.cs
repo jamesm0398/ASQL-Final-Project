@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Windows.Forms;
 
 namespace ASQL_Project_Workstation
 {
@@ -21,7 +22,10 @@ namespace ASQL_Project_Workstation
         int completedUnits = 0;
         int testTrayUnits = 0;
         int failedItems = 0;
-        private int stationNumber = 0;
+        int stationNum = 0;
+        int sleepTime = 0;
+        int timer = 0;
+
 
         public Form1()
         {
@@ -47,22 +51,20 @@ namespace ASQL_Project_Workstation
         //RunStation(): Method to run and setup a workstation 
         //Params: int station: the station number, needed for specifying each worker's experience level
         //Returns: none
-        public void RunStation()
+        public void RunStation(object sender, EventArgs e)
         {
-            
+
 
             runWorkstation = true;
-            int orders = 300; //hard coded for now
-            stationNumber++;
 
-
+            int orders = Convert.ToInt32(numOrders.Text);
 
 
             SqlCommand getExperience = new SqlCommand("GetExperiences", conn);
             getExperience.CommandType = CommandType.StoredProcedure;
 
             
-            getExperience.Parameters.Add("@StationNum", SqlDbType.Int, 50).Value = stationNumber;
+            getExperience.Parameters.Add("@StationNum", SqlDbType.Int, 50).Value = GetStationNum();
             getExperience.Parameters.Add("@ExpLevel", SqlDbType.Int).Direction = ParameterDirection.Output;
             getExperience.ExecuteReader();
             int expLevel = Convert.ToInt32(getExperience.Parameters["@ExpLevel"].Value);
@@ -109,8 +111,8 @@ namespace ASQL_Project_Workstation
             bool bulbHasCard = false;
             bool bezelHasCard = false;
 
-            int timer = 0;
-            int sleepTime = 100*timeToComplete;
+            
+           
             int harnessItems, reflectorItems, housingItems, lensItems, bulbItems, bezelItems;
             harnessItems = reflectorItems = housingItems = lensItems = bulbItems = bezelItems = 0;
             int testTrayNum = 1;
@@ -120,171 +122,186 @@ namespace ASQL_Project_Workstation
             Random defectChance = new Random();
 
 
-            while (runWorkstation == true && completedUnits != orders)
-            {
+          
                 //save the time to complete so it can be reset later
-               // int timeToCompleteInitially = timeToComplete;
+                // int timeToCompleteInitially = timeToComplete;
 
                 
 
-                
+                if(GetWorkStnStatus() == true)
+            {
+                //get amount of each part in bin
+                for (int i = 1; i <= 6; i++)
+                {
+                    //assemble a bulb
+                    SqlCommand getParts = new SqlCommand("GetPartsLeft", conn);
+                    getParts.CommandType = CommandType.StoredProcedure;
 
-                    //get amount of each part in bin
-                    for (int i = 1; i <= 6; i++)
+                    getParts.Parameters.Add("@partID", SqlDbType.Int, 50).Value = i;
+                    getParts.Parameters.Add("@partsLeft", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    getParts.ExecuteReader();
+
+                    switch (i)
                     {
-                        //assemble a bulb
-                        SqlCommand getParts = new SqlCommand("GetPartsLeft", conn);
-                        getParts.CommandType = CommandType.StoredProcedure;
+                        case 1:
+                            harnessItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
 
-                        getParts.Parameters.Add("@partID", SqlDbType.Int, 50).Value = i;
-                        getParts.Parameters.Add("@partsLeft", SqlDbType.Int).Direction = ParameterDirection.Output;
-                        getParts.ExecuteReader();
+                            if (harnessItems <= 5)
+                            {
+                                harnessHasCard = true;
 
-                        switch (i)
-                        {
-                            case 1:
-                                harnessItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
-                                harnessLeft.Text = harnessItems.ToString();
-                                if(harnessItems <= 5)
-                                {
-                                    harnessHasCard = true;
-                                    
-                                }
-                                continue;
+                            }
 
-                            case 2:
-                                reflectorItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
-                                reflectorLeft.Text = reflectorItems.ToString();
-                                if (reflectorItems <= 5)
-                                {
-                                    reflectorHasCard = true;
-                                    
-                                }
-                                continue;
+                           
 
-                            case 3:
-                                housingItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
-                                housingLeft.Text = housingItems.ToString();
-                                if (housingItems <= 5)
-                                {
-                                    housingHasCard = true;
-                                   
+                            continue;
 
-                                }
-                                continue;
+                        case 2:
+                            reflectorItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
 
-                            case 4:
-                                lensItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
-                                lensLeft.Text = lensItems.ToString();
-                                if (lensItems <= 5)
-                                {
-                                    lensHasCard = true;
-                                  
-                                }
-                                continue;
+                            if (reflectorItems <= 5)
+                            {
+                                reflectorHasCard = true;
 
-                            case 5:
-                                bulbItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
-                                bulbLeft.Text = bulbItems.ToString();
-                                if (bulbItems <= 5)
-                                {
-                                    bulbHasCard = true;
-                                 
-                                }
-                                continue;
+                            }
 
-                            case 6:
-                                bezelItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
-                                bezelLeft.Text = bezelItems.ToString();
-                                if (bezelItems <= 5)
-                                {
-                                    bezelHasCard = true;
-                                   
-                                }
-                                continue;
+                         
+                            continue;
 
-                                
-                    
-                        }
+                        case 3:
+                            housingItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
 
-                        getParts.Parameters.Clear();
+                            if (housingItems <= 5)
+                            {
+                                housingHasCard = true;
 
-                        
+
+                            }
+
+                           
+
+                            continue;
+
+                        case 4:
+                            lensItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
+
+                            if (lensItems <= 5)
+                            {
+                                lensHasCard = true;
+
+                            }
+
+                          
+                            continue;
+
+                        case 5:
+                            bulbItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
+
+                            if (bulbItems <= 5)
+                            {
+                                bulbHasCard = true;
+
+                            }
+
+                           
+
+                            continue;
+
+                        case 6:
+                            bezelItems = Convert.ToInt32(getParts.Parameters["@partsLeft"].Value);
+
+                            if (bezelItems <= 5)
+                            {
+                                bezelHasCard = true;
+
+                            }
+
+                           
+                            continue;
+
+
 
                     }
 
-                    //decrement each bin by one part
-                    SqlCommand decrementParts = new SqlCommand("UpdateParts", conn);
-                    decrementParts.CommandType = CommandType.StoredProcedure;
+                    getParts.Parameters.Clear();
 
-                    for (int p = 1; p <=6; p++)
+
+
+                }
+
+                
+                if(harnessItems > 0 && housingItems > 0 && lensItems > 0 && bulbItems > 0 && bezelItems > 0 && reflectorItems > 0)
+                {
+                    for(int r = 0; r <=6; r++)
                     {
-                        decrementParts.Parameters.Add("@partID", SqlDbType.Int, 50).Value = p;
+                        SqlCommand decrementParts = new SqlCommand("UpdateParts", conn);
+                        decrementParts.CommandType = CommandType.StoredProcedure;
+                        decrementParts.Parameters.Add("@partID", SqlDbType.Int, 50).Value = r;
                         decrementParts.ExecuteNonQuery();
                         decrementParts.Parameters.Clear();
                     }
+                    completedUnits++;
+                }
+              
 
-                 
-                    timer = timer + timescale;
-                    
 
-                    //replace bins (every 5 mins)
-                    if (timer == 300)
+                //replace bins (every 5 mins)
+                if (IncrementTimer(timeToComplete) % 100 == 0)
+                {
+
+                    if (harnessHasCard == true)
                     {
-                       
-                        if(harnessHasCard == true)
-                        {
-                            RefillBins(1, harnessItems);
-                        }
-
-                        if (reflectorHasCard == true)
-                        {
-                            RefillBins(2, reflectorItems);
-                        }
-
-                        if (housingHasCard == true)
-                        {
-                            RefillBins(3, housingItems);
-                        }
-
-                        if (lensHasCard == true)
-                        {
-                            RefillBins(4, lensItems);
-                        }
-
-                        if (bulbHasCard == true)
-                        {
-                            RefillBins(5, bulbItems);
-                        }
-
-                        if (bezelHasCard == true)
-                        {
-                            RefillBins(6, bezelItems);
-                        }
-
+                        RefillBins(1, harnessItems);
+                        harnessHasCard = false;
                     }
 
-               
+                    if (reflectorHasCard == true)
+                    {
+                        RefillBins(2, reflectorItems);
+                        reflectorHasCard = false;
+                    }
 
-                async void wait()
-                {
-                    await Task.Delay(sleepTime);
+                    if (housingHasCard == true)
+                    {
+                        RefillBins(3, housingItems);
+                        housingHasCard = false;
+                    }
+
+                    if (lensHasCard == true)
+                    {
+                        RefillBins(4, lensItems);
+                        lensHasCard = false;
+                    }
+
+                    if (bulbHasCard == true)
+                    {
+                        RefillBins(5, bulbItems);
+                        bulbHasCard = false;
+                    }
+
+                    if (bezelHasCard == true)
+                    {
+                        RefillBins(6, bezelItems);
+                        bezelHasCard = false;
+                    }
+
                 }
 
-                 //   System.Threading.Thread.Sleep(sleepTime);
-                
 
-              //  timeToComplete = timeToCompleteInitially;
 
-                if(defectChance.Next(100) < defectRate)
+
+
+            
+
+                if (defectChance.Next(100) < defectRate)
                 {
                     testBulbIsGood = false;
                     failedItems++;
                 }
-                
+
                 //add bulb to test tray
                 testTrayUnits++;
-            
+
                 //test tray is full
                 if (testTrayUnits == 60)
                 {
@@ -303,20 +320,22 @@ namespace ASQL_Project_Workstation
                 insertUnitNum.Parameters.AddWithValue("@PF", bulbGood);
                 insertUnitNum.ExecuteNonQuery();
 
-              
 
-                timer = timer + timescale;
-                completedUnits++;
 
-                wait();
 
-                // System.Threading.Thread.Sleep(sleepTime);
+       
+
 
             }
 
-            doneLabel.Text = "Orders filled";
+                
+            if(completedUnits == orders)
+            {
+                doneLabel.Text = "Orders filled";
+            }
+      
 
-            conn.Close();
+          //  conn.Close();
         }
 
         //RefillBins(): Called when the bin has less than 5 items left, this is simulating the runner replacing the bin
@@ -330,28 +349,133 @@ namespace ASQL_Project_Workstation
             refill.Parameters.Add("@partsLeft", SqlDbType.Int, 50).Value = itemsLeft;
             refill.ExecuteNonQuery();
         }
+
+        public int IncrementTimer(int timeToComplete)
+        {
+           
+           this.timer = this.timer + timeToComplete;
+           this.timer = 10 * ((this.timer + 9) / 10);
+            return this.timer;
+        }
+
+     
+
+        public int GetTimescale()
+        {
+
+            string ts = "SELECT TimeScale FROM Config";
+            SqlCommand getTimescale = new SqlCommand(ts, conn);
+            int timescale = (int)getTimescale.ExecuteScalar();
+            return timescale;
+        }
+
        
 
-        public void StopStation()
+        public bool GetWorkStnStatus()
         {
-            runWorkstation = false;
-            stationNumber--;
+            return this.runWorkstation;
+        }
+
+        public int GetStationNum()
+        {
+            return this.stationNum;
+        }
+
+        public void SetStationNum(int num)
+        {
+            this.stationNum = num;
+        }
+
+        public void SetSleepTime ()
+        {
+            SqlCommand getExperience = new SqlCommand("GetExperiences", conn);
+            getExperience.CommandType = CommandType.StoredProcedure;
+
+
+            getExperience.Parameters.Add("@StationNum", SqlDbType.Int, 50).Value = GetStationNum();
+            getExperience.Parameters.Add("@ExpLevel", SqlDbType.Int).Direction = ParameterDirection.Output;
+            getExperience.ExecuteReader();
+            int expLevel = Convert.ToInt32(getExperience.Parameters["@ExpLevel"].Value);
+
+
+
+
+
+            string ts = "SELECT TimeScale FROM Config";
+            SqlCommand getTimescale = new SqlCommand(ts, conn);
+            int timescale = (int)getTimescale.ExecuteScalar();
+
+
+            int timeToComplete = 60; //TIME to complete lamp (60 secs)
+          
+
+            if (expLevel == 1)
+            {
+                timeToComplete = 90;
+              
+            }
+
+            if (expLevel == 3)
+            {
+                timeToComplete = 51;
+             
+            }
+
+            if (expLevel == 2)
+            {
+                Random rnd = new Random();
+                timeToComplete = rnd.Next(54, 66); //since the time to complete is 60 secs +/- 10%, their time to complete is between 54 and 66 secs
+                
+            }
+
+            timeToComplete = timeToComplete / timescale; //actual time to complete depends on timescale
+            this.sleepTime = timeToComplete*1000;
+        }
+
+        public int GetSleepTime()
+        {
+            return this.sleepTime;
         }
 
 
         private void run1_Click(object sender, EventArgs e)
         {
-            RunStation();
+            SetStationNum(1);
+            SetSleepTime();
+            Timer aTimer = new Timer();
+            aTimer.Tick += new EventHandler(RunStation);
+            aTimer.Interval = GetSleepTime();
+            aTimer.Start();
+
+
+
+           
         }
 
-        private void stop_Click(object sender, EventArgs e)
-        {
-            StopStation();
-        }
-
+       
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void run2_Click(object sender, EventArgs e)
+        {
+            SetStationNum(2);
+            SetSleepTime();
+            Timer aTimer = new Timer();
+            aTimer.Tick += new EventHandler(RunStation);
+            aTimer.Interval = GetSleepTime();
+            aTimer.Start();
+        }
+
+        private void run3_Click(object sender, EventArgs e)
+        {
+            SetStationNum(3);
+            SetSleepTime();
+            Timer aTimer = new Timer();
+            aTimer.Tick += new EventHandler(RunStation);
+            aTimer.Interval = GetSleepTime();
+            aTimer.Start();
         }
     }
 }
